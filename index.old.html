@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMPLEX | Simple & Excellent</title>
+    <style>
+        /* Modern Premium Tech Design System - Google & Toss Bank Inspired */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        :root {
+            --bg-base: #f9fafb;
+            --bg-surface: #ffffff;
+            --text-main: #191f28;
+            --text-sub: #4e5968;
+            --text-mute: #8b95a1;
+            --toss-blue: #3182f6;
+            --toss-blue-hover: #1b64da;
+            --toss-blue-light: #e8f3ff;
+            --border-light: #e5e8eb;
+            --radius-xl: 24px;
+            --radius-lg: 16px;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --wrapper-width: 1140px;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            word-break: keep-all;
+        }
+
+        /* Fixed Navigation Layout Bug Correction */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border-light);
+            z-index: 2000;
+        }
+
+        .nav-container {
+            max-width: var(--wrapper-width);
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-logo span {
+            color: var(--toss-blue);
+            font-weight: 600;
+            margin-left: 8px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            border-left: 1px solid var(--border-light);
+            padding-left: 8px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            margin-left: 32px;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--toss-blue);
+        }
+
+        /* Hero Section Spacing Bug Fix (Massive Padding Separation for PC) */
+        .hero-section {
+            padding: 180px 0 120px 0;
+            background: linear-gradient(180deg, #ffffff 0%, #f4f6f8 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .hero-text {
+            text-align: left;
+        }
+
+        .chips-badge {
+            display: inline-block;
+            background-color: var(--toss-blue-light);
+            color: var(--toss-blue);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .hero-section h1 {
+            font-size: 52px;
+            font-weight: 900;
+            line-height: 1.35;
+            letter-spacing: -1.8px;
+            color: var(--text-main);
+            margin-bottom: 28px;
+        }
+
+        .hero-section p {
+            font-size: 20px;
+            color: var(--text-sub);
+            margin-bottom: 44px;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--toss-blue);
+            color: white;
+            padding: 18px 40px;
+            border-radius: var(--radius-lg);
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(49, 130, 246, 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: var(--toss-blue-hover);
+            box-shadow: 0 12px 28px rgba(49, 130, 246, 0.3);
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+
+        .hero-image-wrap img {
+            width: 100%;
+            border-radius: var(--radius-xl);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.07);
+            object-fit: cover;
+            max-height: 480px;
+        }
+
+        /* Broad Spacing for PC (Preventing elements from clinging too tightly) */
+        .block-section {
+            padding: 130px 0;
+            background-color: var(--bg-surface);
+        }
+
+        .block-section.alt {
+            background-color: var(--bg-base);
+        }
+
+        .wrapper {
+            max-width: var(--wrapper-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .block-header {
+            text-align: center;
+            margin-bottom: 72px;
+        }
+
+        .block-header h2 {
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        .block-header p {
+            font-size: 20px;
+            color: var(--text-sub);
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        /* Grid Gaps Widened for Airflow Layout */
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .split-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            align-items: center;
+        }
+
+        .feature-box {
+            background: var(--bg-surface);
+            padding: 48px 40px;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-light);
+            transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1), box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 56px rgba(0, 0, 0, 0.06);
+        }
+
+        .icon-wrap {
+            width: 56px;
+            height: 56px;
+            background-color: #f2f4f6;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 28px;
+            font-size: 26px;
+        }
+
+        .feature-box h3 {
+            font-size: 23px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-main);
+            letter-spacing: -0.4px;
+        }
+
+        .feature-box p {
+            font-size: 16px;
+            color: var(--text-sub);
+            line-height: 1.7;
+        }
+
+        /* Interactive Strategy Board Spacing */
+        .interactive-board {
+            background-color: #191f28;
+            color: white;
+            padding: 56px;
+            border-radius: var(--radius-xl);
+            box-shadow: 0 24px 50px rgba(0,0,0,0.08);
+        }
+
+        .board-headline {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: #ffffff;
+        }
+
+        .tab-menu {
+            margin-bottom: 36px;
+            border-bottom: 1px solid #333d4b;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tab-item {
+            padding: 14px 24px;
+            color: #8b95a1;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            transition: color 0.2s, border-bottom 0.2s;
+        }
+
+        .tab-item.active {
+            color: var(--toss-blue);
+            border-bottom: 3px solid var(--toss-blue);
+        }
+
+        .board-display {
+            font-size: 18px;
+            color: #f2f4f6;
+            min-height: 120px;
+            line-height: 1.85;
+        }
+
+        .image-content-block {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            margin-top: 56px;
+            align-items: center;
+        }
+
+        .embedded-img {
+            width: 100%;
+            border-radius: var(--radius-xl);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            object-fit: cover;
+            max-height: 400px;
+        }
+
+        /* Metric Charts Container */
+        .metric-container {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: 48px 40px;
+            margin-top: 56px;
+        }
+
+        .metric-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--toss-blue);
+            margin-bottom: 32px;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        .metric-item {
+            flex: 1;
+            border-right: 1px solid var(--border-light);
+            padding: 0 16px;
+        }
+
+        .metric-item:last-child {
+            border-right: none;
+        }
+
+        .metric-value {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 15px;
+            color: var(--text-sub);
+            font-weight: 600;
+        }
+
+        /* Track Record Table */
+        .table-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .table-responsive-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .track-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 800px;
+        }
+
+        .track-table th {
+            background-color: #f9fafb;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 16px;
+            padding: 18px 24px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .track-table td {
+            padding: 22px 24px;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 15.5px;
+            color: var(--text-sub);
+            vertical-align: top;
+            line-height: 1.75;
+        }
+
+        .track-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .track-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: #f2f4f6;
+            color: var(--text-main);
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .svg-graphic {
+            width: 100%;
+            max-width: 440px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        footer {
+            background-color: #191f28;
+            color: #8b95a1;
+            padding: 88px 0 60px 0;
+            font-size: 14.5px;
+            border-top: 1px solid #333d4b;
+        }
+
+        footer h4 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 24px;
+            font-weight: 800;
+        }
+
+        footer p {
+            margin-bottom: 12px;
+            line-height: 1.75;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.10fr 0.90fr;
+            gap: 48px;
+        }
+
+        .footer-divider {
+            margin-top: 56px;
+            padding-top: 28px;
+            border-top: 1px solid #333d4b;
+            text-align: center;
+        }
+
+        /* ==========================================================================
+           CRITICAL BUG FIXES FOR MOBILE (Anti-Lopsided Alignment & Visible Menu)
+           ========================================================================== */
+        @media (max-width: 991px) {
+            .block-section { padding: 90px 0; }
+            .responsive-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .hero-text { text-align: center; }
+            .hero-section h1 { font-size: 40px; }
+            .image-content-block { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            /* Fix Bug 3: Visible, Unhidden Menu on Mobile without overlapping */
+            header {
+                position: relative; /* Changing from fixed to prevent blocking hero text or getting clipped hidden */
+                height: auto;
+                background-color: var(--bg-surface);
+            }
+            .nav-container {
+                flex-direction: column;
+                padding: 20px 16px;
+                height: auto;
+                gap: 16px;
+                align-items: center;
+                justify-content: center;
+            }
+            nav {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap; /* Safe wrapping prevents clipping menu nodes */
+                gap: 12px 16px;
+                margin: 0 auto;
+            }
+            nav a {
+                margin: 0 !important; /* Eliminate asymmetric default margins */
+                font-size: 14.5px;
+                font-weight: 700;
+                white-space: nowrap;
+            }
+            
+            /* Fix Bug 2: Balanced Symmetric Mobile Alignment (Anti-Lopsided "치우침 방지") */
+            .hero-section {
+                padding: 50px 0 80px 0; /* Reset excessive top padding since nav is relative */
+            }
+            .wrapper {
+                padding: 0 20px; /* Symmetrical side gutters prevents lopsided content shift */
+                width: 100% !important;
+            }
+            .block-header h2 { font-size: 28px; }
+            .block-header p { font-size: 16px; }
+            
+            .responsive-grid, .split-grid {
+                grid-template-columns: 1fr !important;
+                width: 100%;
+                gap: 24px;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+            
+            .feature-box {
+                padding: 36px 28px;
+                text-align: left; /* Unified legible card alignment */
+                width: 100% !important;
+                margin: 0 auto;
+            }
+            
+            .interactive-board {
+                padding: 36px 24px;
+                width: 100%;
+            }
+            .board-headline { font-size: 21px; }
+            .board-display { font-size: 16px; min-height: 140px; }
+
+            .metric-container { padding: 36px 24px; }
+            .metric-row {
+                flex-direction: column;
+                gap: 28px;
+            }
+            .metric-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border-light);
+                padding-bottom: 20px;
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .metric-item:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+            .metric-value { font-size: 34px; }
+            
+            .table-card { padding: 20px 14px; width: 100%; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .cta-side { align-items: center !important; justify-content: center !important; }
+            .cta-side h4 { text-align: center !important; }
+            .cta-side p { text-align: center !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation (Fully Fixed on PC / Perfectly Stacked & Visible on Mobile) -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="brand-logo">SIMPLEX<span>Simple & Excellent</span></a>
+            <nav>
+                <a href="#painpoints">물류 리스크 진단</a>
+                <a href="#solution">의사결정 아키텍처</a>
+                <a href="#proof">실증 사례</a>
+                <a href="#records">종합 기업실적</a>
+                <a href="#infrastructure">수행 조직</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section: Ultimate Value Proposition -->
+    <section class="hero-section">
+        <div class="wrapper">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <span class="chips-badge">SIMPLEX : Simple & Excellent</span>
+                    <h1>복잡한 공급망을<br>탁월한 판단으로 개혁합니다</h1>
+                    <p>경험과 직관의 한계를 넘어, 데이터와 알고리즘 기반의 인공지능 의사결정 프로세스(AI-Driven Decision Making Process)를 기업 운영 체계에 내재화합니다. 고질적인 물류 복잡성을 완벽히 제어하고 영구적인 고정비 절감 경로를 제시합니다.</p>
+                    <a href="#contact" class="cta-button">의사결정 혁신 구조 진단하기</a>
+                </div>
+                <div class="hero-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Data Analytics and Corporate Dashboard Systems">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Pain Point Analysis -->
+    <section id="painpoints" class="section block-section alt">
+        <div class="wrapper">
+            <div class="block-header">
+                <h2>공급망 복잡성과 직관적 오판의 리스크</h2>
+                <p>수많은 기업들이 표면적 시스템 인프라 구축 후에도 여전히 데이터 파편화와 비효율적 배차 의사결정으로 막대한 고정비를 낭비하고 있습니다.</p>
+            </div>
+            
+            <div class="responsive-grid">
+                <div class="feature-box">
+                    <div class="icon-wrap">🌐</div>
+                    <h3>자산 제약과 복잡성</h3>
+                    <p>일평균 100대 이상의 차량 배차, 전국 170개 이상의 고객망, 150대 이상의 이송 용기(Tube Trailer) 자산이 파킹 상태로 방치되어 회전율 저하 및 불필요한 고정 물류비 지출이 발생합니다.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="icon-wrap">📉</div>
+                    <h3>직관적 판단의 한계</h3>
+                    <p>고객 저장소의 정확한 실시간 사용예측량 및 탱크 잔압에 대한 가시성 부재로 인해, 불필요한 조기 회송과 기준 미달 상태의 과잉 납품 횟수가 지속적으로 누적됩니다.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="icon-wrap">⚠️</div>
+                    <h3>이해관계자 정보 단절</h3>
+                    <p>주문 발생 시점부터 최종 배송 및 정산에 이르기까지 고객, 영업, CS팀, 생산팀, 운송기사 간의 데이터가 파편화되어 예외 상황 발생 시 즉각적 대안 도출이 불가능합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Value Proposition & Core Solution Architecture -->
+    <section id="solution" class="section block-section">
+        <div class="wrapper">
+            <div class="block-header">
+                <h2>AI 기반 의사결정 혁신 아키텍처</h2>
+                <p>단순 코딩이나 단편적 모니터링 기능의 도입을 철저히 배제하고, 무결한 판단 알고리즘 체계를 기업에 완전히 정착시킵니다.</p>
+            </div>
+
+            <div class="responsive-grid">
+                <div class="feature-box">
+                    <h3>1. 원천 데이터 무결성 확보</h3>
+                    <p>잘못된 데이터 가공은 AI 모델의 오판을 낳습니다. 현장의 가공되지 않은 오리지널 원천 데이터(Raw Data) 수집용 IoT 디바이스 인터페이스 아키텍처부터 완벽하게 검증하고 다집니다.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>2. 지능형 판단 엔진 구축</h3>
+                    <p>배차 스케줄 최적화 알고리즘과 자동 보충 프로그램 시뮬레이션을 동기화합니다. 현대모비스 등 대기업에서 신뢰성이 입증된 글로벌 자동 재고보충 체계와 완벽한 정합성을 지닙니다.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>3. 실시간 예외 상황 제어</h3>
+                    <p>공급망 이탈, 지연 등 돌발 변수 포착 시 인공지능 알고리즘이 우회 시나리오별 손실 비용을 즉시 산출하여, 경영진 및 실무자가 가장 신속하고 정확한 우회 의사결정을 내리도록 지원합니다.</p>
+                </div>
+            </div>
+
+            <div class="image-content-block">
+                <div>
+                    <!-- Dynamic Decision Process Board -->
+                    <div class="interactive-board">
+                        <div class="board-headline">지능형 의사결정 프로세스의 단계별 가치 제안</div>
+                        <div class="tab-menu">
+                            <div class="tab-item active" onclick="switchDecisionTab('core')">의사결정 최적화</div>
+                            <div class="tab-item" onclick="switchDecisionTab('exception')">실시간 리스크 제어</div>
+                            <div class="tab-item" onclick="switchDecisionTab('data')">Raw Data 무결성</div>
+                        </div>
+                        <div id="decision-board-text" class="board-display">
+                            다차원 변수 분석과 수요 예측 모델을 기반으로 비즈니스 내 최적의 대안만을 자동 생성합니다. 단순 시각화를 넘어, 고정 물류 비용을 영구적으로 제거하고 전사 공급망의 판단 주기를 지능화하여 실질적인 재무 성과를 견인합니다.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <img class="embedded-img" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Smart Premium Logistics Warehouse Operations and Management">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Proof Points (Approtium Case Metrics) -->
+    <section id="proof" class="section block-section alt">
+        <div class="wrapper">
+            <div class="block-header">
+                <h2>실증 사례 기반 정량적 성과 증명</h2>
+                <p>국내 최대 수소 공급망을 갖춘 어프로티움(APPROTIUM) 물류혁신 프로젝트 설계 데이터를 기초로 입증된 고효율 의사결정 지표입니다.</p>
+            </div>
+
+            <div class="split-grid">
+                <div class="feature-box" style="background:#ffffff;">
+                    <h3 style="color: var(--toss-blue); margin-bottom:14px;">VMI & 자동 보충 보급 솔루션</h3>
+                    <p style="margin-bottom:16px;">고객 탱크의 잔압 및 재고 데이터를 무선 데이터 획득(IoT 디바이스) 인프라를 통해 실시간으로 클라우드에 연동하는 VMI(공급자 주도 재고관리) 환경을 정밀 설계했습니다.</p>
+                    <p>이를 통해 글로벌 재고보충 시스템인 'Intuiflow' 기반의 신호등 가시성을 구현하여 결품과 과잉을 원천 차단하고 '평균 1회 납품량 증가 및 연간 총 배송 횟수 감소'의 선순환을 이끌어 냅니다.</p>
+                </div>
+                <div class="feature-box" style="background:#ffffff;">
+                    <h3 style="margin-bottom:14px;">거점 네트워크 최적화 시뮬레이션</h3>
+                    <p style="margin-bottom:16px;">울산공장과 서산공장 각각의 공급 한계, 이해관계자 요구조건, 수배송 거리에 따른 비용 매트릭스 시나리오 모형을 다각적으로 수립했습니다.</p>
+                    <p>거점별 공급 권역 조정 시뮬레이션 실험 및 부생수소 도입사별 최적 Allocation(할당) 이익 최대화 모델 구축을 병행하여 불필요한 가동 손실을 근본적으로 해소합니다.</p>
+                </div>
+            </div>
+
+            <div class="metric-container">
+                <div class="metric-title">심플렉스 컨설팅의 정량적 프로젝트 목표 (Target)</div>
+                <div class="metric-row">
+                    <div class="metric-item">
+                        <div class="metric-value">10%</div>
+                        <div class="metric-label">연간 총 납품 및 배송비 직접 절감</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">5%</div>
+                        <div class="metric-label">파이프라인 이익 최대화 증대</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">100%</div>
+                        <div class="metric-label">DATA 자산 기반의 의사결정 체계화</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Comprehensive Track Record (Detailed Table) -->
+    <section id="records" class="section block-section">
+        <div class="wrapper">
+            <div class="block-header">
+                <h2>국내 최상위 대기업이 검증한 컨설팅 실적</h2>
+                <p>제조, 유통, 인프라, 통신을 아우르며 독보적인 SCM 구현 및 프로세스 혁신 마스터플랜을 성공적으로 완수해 온 심플렉스의 이력입니다.</p>
+            </div>
+
+            <div class="table-card">
+                <div class="table-responsive-wrapper">
+                    <table class="track-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%;">산업 도메인</th>
+                                <th style="width: 55%;">수행 프로젝트 명 (Client & Scope)</th>
+                                <th style="width: 20%; text-align: right;">컨설팅 분류</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>제조 / IT / R&D 혁신</strong></td>
+                                <td>
+                                    • <strong>삼성테크윈</strong> IT모듈 사업부 SCM 구현 컨설팅<br>
+                                    • <strong>LG전자</strong> 생산기술원 PMS(프로젝트 관리 시스템) 개발 프로젝트 컨설팅<br>
+                                    • <strong>효성연구원</strong> R&D 프로세스 개선 컨설팅 및 솔루션 구현<br>
+                                    • <strong>오성전자</strong> R&D 프로세스 개선 컨설팅<br>
+                                    • <strong>전자통신연구원(ETRI)</strong> R&D 프로세스 개선 및 솔루션 구현 컨설팅
+                                </td>
+                                <td style="text-align: right;"><span class="track-tag">SCM / R&D PI</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>통신 / 글로벌 공급망</strong></td>
+                                <td>
+                                    • <strong>SK텔레콤</strong> 의료장비 및 시약개발 프로젝트 컨설팅<br>
+                                    • <strong>SK텔레콤</strong> 중국 티엔롱(Tianlong) 생산 및 재고관리 프로세스 개선 컨설팅
+                                </td>
+                                <td style="text-align: right;"><span class="track-tag">Global SCM</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>유통 / 프로세스 혁신</strong></td>
+                                <td>
+                                    • <strong>이랜드시스템스</strong> Thinking Process 기법을 통한 전사 혁신전략 수립 컨설팅<br>
+                                    • <strong>이랜드시스템스</strong> 프로세스 개선 컨설팅 및 PMS 솔루션 구현 컨설팅
+                                </td>
+                                <td style="text-align: right;"><span class="track-tag">Process Innovation</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>철강 / 중공업 / 인프라</strong></td>
+                                <td>
+                                    • <strong>고려아연</strong> MIS 개발 프로젝트 (영업, 생산 부문) Project Leader<br>
+                                    • <strong>포스코건설</strong> 건설공정관리 시스템 개발 프로젝트<br>
+                                    • <strong>대우엔지니어링</strong> 대구지하철 2호선 설비 유지보수관리 시스템 구현 컨설팅<br>
+                                    • <strong>대륙전선</strong> ERP 구현 프로젝트 PM<br>
+                                    • <strong>LG계열사</strong> (LG산전, LG하니웰, LG기계, LG전선, LG정보통신) ERP 구현 및 개발 컨설팅
+                                </td>
+                                <td style="text-align: right;"><span class="track-tag">ERP / MIS 구축</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Infrastructure & Executive Organization -->
+    <section id="infrastructure" class="section block-section alt">
+        <div class="wrapper">
+            <div class="split-grid">
+                <div>
+                    <svg class="svg-graphic" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="300" rx="24" fill="#ffffff" stroke="#e5e8eb" stroke-width="2"/>
+                        <circle cx="200" cy="110" r="45" fill="#3182f6" opacity="0.1"/>
+                        <path d="M170,110 C170,90 230,90 230,110 C230,130 170,130 170,110 Z" fill="#3182f6"/>
+                        <path d="M130,220 C130,170 270,170 270,220" fill="none" stroke="#3182f6" stroke-width="6" stroke-linecap="round"/>
+                        <text x="200" y="270" font-family="sans-serif" font-size="16" font-weight="bold" fill="#191f28" text-anchor="middle">SIMPLEX PARTNERS</text>
+                    </svg>
+                </div>
+                <div>
+                    <span class="chips-badge">수행 역량 인프라</span>
+                    <h3 style="font-size: 34px; font-weight: 900; margin-bottom: 20px; letter-spacing: -0.8px;">최상위 정예 전문가 네트워크</h3>
+                    <p style="color: var(--text-sub); font-size: 16.5px; margin-bottom: 16px; line-height: 1.75;">심플렉스는 학술적 깊이를 기반으로 대기업 현장의 물리적 프로세스와 제약 요건을 아우르는 최적의 구조적 해법을 설계합니다.</p>
+                    <p style="color: var(--text-sub); font-size: 16.5px; line-height: 1.75;">물류·SCM 분야의 최고 전문가 그룹(한대석 물류박사 등)과 AI 머신러닝, IoT 디바이스 플랫폼 및 빅데이터 부문의 최정예 전문 컨설턴트들이 원 팀으로 결합하여 원천 데이터 진단부터 최적 알고리즘 엔진 구현까지 책임집니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Action CTA & Contact Footer -->
+    <footer id="contact">
+        <div class="wrapper">
+            <div class="footer-grid">
+                <div>
+                    <h4>SIMPLEX (Simple & Excellent)</h4>
+                    <p>대표 전문가: 한대석 물류박사 | 파트너 네트워크: SCM 및 AI 부문 정예 컨설턴트 그룹</p>
+                    <p>핵심 비즈니스: 인공지능(AI) 기반 기업 의사결정 전략 컨설팅, 공급망 네트워크 시뮬레이션 모델 설계</p>
+                    <p style="color: #4e5968; margin-top: 16px;">본 기획 및 소개 페이지에 수록된 컨설팅 방법론과 정량 지표 데이터의 무단 복제 및 대외 유출을 전면 금합니다.</p>
+                </div>
+                <div class="cta-side" style="display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end;">
+                    <h4>비즈니스 판단 체계 지능화</h4>
+                    <p style="margin-bottom: 24px; text-align: right;">기업 고유의 원천 Raw Data 진단 및 최적화 시뮬레이션 도입 상담 신청</p>
+                    <button class="cta-button" onclick="alert('심플렉스 지능형 의사결정 전략 컨설팅 상담 신청이 성공적으로 접수되었습니다. 담당 파트너가 신속하게 회신해 드리겠습니다.')">지금 진단 예약하기</button>
+                </div>
+            </div>
+            <div class="footer-divider">
+                <p>&copy; 2026 SIMPLEX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Component Script -->
+    <script>
+        const decisionData = {
+            core: "다차원 변수 분석과 수요 예측 모델을 기반으로 비즈니스 내 최적의 대안만을 자동 생성합니다. 단순 시각화를 넘어, 고정 물류 비용을 영구적으로 제거하고 전사 공급망의 판단 주기를 지능화하여 실질적인 재무 성과를 견인합니다.",
+            exception: "경험에 전적으로 의존하는 수동적 리스크 관리를 탈피합니다. 실시간 수배송 경로 이탈이나 잔압 예측 등 공급망 예외 상황이 포착되는 순간, 알고리즘 엔진이 우회 대안 시나리오별 실질 비용을 계산해 최적의 경영 복구 의사결정을 실시간 제공합니다.",
+            data: "데이터가 오염되면 아무리 뛰어난 AI 모델도 오판을 내릴 뿐입니다. 심플렉스는 가공되지 않은 오리지널 원천 현장 데이터(Raw Data)의 수집 체계와 인프라 무결성을 먼저 정비하여, 지능형 엔진이 내리는 모든 의사결정 결과의 신뢰도를 100% 보장합니다."
+        };
+
+        function switchDecisionTab(tabKey) {
+            const items = document.querySelectorAll('.tab-item');
+            items.forEach(item => item.classList.remove('active'));
+            
+            const mapping = { core: 0, exception: 1, data: 2 };
+            items[mapping[tabKey]].classList.add('active');
+            
+            document.getElementById('decision-board-text').innerText = decisionData[tabKey];
+        }
+    </script>
+</body>
+</html>
